@@ -1,42 +1,31 @@
-# 🏆 Desafio Técnico – EMV
+​💳 EMV Transaction Engine - Tupi Fintech
+​Este repositório contém o desafio técnico desenvolvido para a posição de Backend Developer na Tupi Fintech. O projeto consiste em um motor de processamento de transações EMV (Chip) escrito em Go, simulando o fluxo entre um terminal de pagamento e o emissor.
 
-## 🎯 Objetivo  
-Criar um módulo básico de processamento de transações EMV, que valide e simule a comunicação entre um terminal de pagamento (POS) e um cartão de crédito/débito com chip.  
+​🎯 Objetivo
+​Implementar um serviço robusto capaz de decodificar dados de cartões, validar regras de negócio financeiras (Luhn, Validade, CVM) e registrar logs auditáveis de cada operação.
 
-## 📌 Requisitos  
 
-1. **Linguagem**: Escolha entre **Golang, Kotlin, Java ou Rust**.  
-2. **Protocolo EMV**: Implementar uma lógica básica para processar uma transação com base em um conjunto de TLVs (Tag-Length-Value).  
-3. **Fluxo da Transação**:  
-   - Entrada de dados do cartão (simulado).  
-   - Decodificação de TLVs da transação.  
-   - Validação de dados essenciais (PAN, data de validade, CVM).  
-   - Simulação de comunicação com gateway de pagamento para autorização da transação.  
-   - Retorno do resultado da transação (aprovada/rejeitada).  
-4. **Testes**: Criar **casos de teste unitários** para validar a implementação.  
+​🏗️ Arquitetura e Design
+​A arquitetura foi pensada para ser modular e extensível, seguindo boas práticas de Go:
+​SoC (Separation of Concerns): Divisão clara entre lógica de validação, regras de negócio EMV e persistência.
+​Idiosincrasia Go: Uso de tratamento de erros explícito e structs para representação de dados.
 
-## 🔍 Detalhes da Implementação  
+​Logs Auditáveis: Registro estruturado em JSON, essencial para conciliação bancária e debug em ambiente de produção.
 
-- **Leitura dos Dados do Cartão**: Simular a extração dos seguintes TLVs:  
-  - `5A` – PAN (Primary Account Number).  
-  - `5F24` – Data de validade.  
-  - `9F34` – CVM (Cardholder Verification Method).  
-- **Validação**:  
-  - O PAN deve ter entre 13 e 19 dígitos e passar no algoritmo de Luhn.  
-  - A data de validade não pode ser anterior à data atual.  
-  - O CVM deve conter pelo menos um método suportado.  
-- **Simulação de Autorização**: Criar um serviço mock que retorne aleatoriamente uma autorização aprovada ou rejeitada.  
-- **Log de Transações**: Registrar transações processadas em um arquivo JSON ou banco de dados SQLite.  
+🛠️ Tecnologias e Padrões
+​Go 1.21+ (Foco em performance e concorrência).
+​JSON Logging: Implementação de logs estruturados para facilitar integração com ELK Stack/Splunk.
+​Unit Testing: Cobertura de testes nos componentes críticos de validação.
+​EMV Standard: Simulação baseada nas tags 5A (PAN), 5F24 (Expiry) e 9F34 (CVM).
 
-## ✅ Critérios de Avaliação  
-✔ Qualidade do código e boas práticas.  
-✔ Correta implementação do fluxo EMV.  
-✔ Tratamento de erros e logs.  
-✔ Testes automatizados.  
-✔ Organização e documentação do código.  
+#como rodar o projeto
+go run main.go
 
-## 📦 Entrega  
-- Código-fonte hospedado no **GitHub/GitLab**.  
-- Um README explicando a implementação e como rodar o projeto.  
+🧪 Validações Implementadas
+​✅ Algoritmo de Luhn: Verificação de integridade do PAN (Número do Cartão).
 
-🚀 **Boa sorte e mãos à obra!**  
+​✅ Check de Expiração: Bloqueio de transações com cartões vencidos (comparação com data atual).
+
+​✅ CVM Check: Validação de presença de método de verificação do portador.
+
+​✅ Mock Gateway: Simulação de latência e resposta randômica de autorização online.
