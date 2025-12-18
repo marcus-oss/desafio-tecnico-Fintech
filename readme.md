@@ -1,5 +1,5 @@
 ​💳 EMV Transaction Engine - Tupi Fintech
-​Este repositório contém o desafio técnico desenvolvido para a posição de Desenvolvedor Backend Go na Tupi Fintech.o projeto consiste em um motor de processamento de transações EMV (Chip) escrito em Go,simulando o fluxo entre um terminal de pagamento e o emissor.
+​Este repositório contém o desafio técnico desenvolvido para a posição de Desenvolvedor Backend Go na Tupi Fintech. o projeto consiste em um motor de processamento de transações EMV (Chip) escrito em Go,simulando o fluxo entre um terminal de pagamento e o emissor.
 
 ​🎯 Objetivo
 
@@ -15,6 +15,8 @@
 ​Logs Auditáveis: Registro estruturado em JSON, essencial para conciliação bancária e debug em ambiente de produção.
 
 🛠️ Tecnologias e Padrões
+
+
 ​Go 1.21+ (Foco em performance e concorrência).
 
 ​JSON Logging: Implementação de logs estruturados para facilitar integração com ELK Stack/Splunk.
