@@ -16,17 +16,17 @@ type Transaction struct {
 
 // Process analisa os dados e decide se envia para o gateway
 func Process(data Transaction) (string, error) {
-	// 1. Validação de Tamanho do PAN
+	//Validação de Tamanho do PAN
 	if len(data.PAN) < 13 || len(data.PAN) > 19 {
 		return "REJEITADA", errors.New("tamanho de PAN inválido")
 	}
 
-	// 2. Validação Luhn
+	//Validação Luhn
 	if !validator.IsLuhnValid(data.PAN) {
 		return "REJEITADA", errors.New("falha no algoritmo de Luhn")
 	}
 
-	// 3. Validação de Data (Simplificada YYMMDD)
+	//Validação de Data (Simplificada YYMMDD)
 	currentDate := time.Now().Format("060102") // Formato YYMMDD
 	if data.Expiry < currentDate {
 		return "REJEITADA", errors.New("cartão expirado")
