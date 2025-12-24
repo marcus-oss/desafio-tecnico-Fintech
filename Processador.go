@@ -32,7 +32,7 @@ func Process(data Transaction) (string, error) {
 		return "REJEITADA", errors.New("cartão expirado")
 	}
 
-	// 4. Simulação de Gateway (Mock)
+	//Simulação de Gateway (Mock)
 	return callGateway(), nil
 }
 
